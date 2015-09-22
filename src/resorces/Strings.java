@@ -1,3 +1,4 @@
+package resorces;
 
 public class Strings {
 	public static final String DB_SERVER_URL = "jdbc:mysql://localhost/HospitalManager";
