@@ -36,19 +36,74 @@
     	<input type="text" name="address" size="50">
     	<br>
     	Guardians Name:<br>
-    	<input type="text" name="address" >
+    	<input type="text" name="guardian" >
     	<br>
-    	<input type="radio" name="sex" value="male" checked> Male
-    	<input type="radio" name="sex" value="female"> Female
+    	<input type="radio" name="sex" value="M" checked> Male
+    	<input type="radio" name="sex" value="F"> Female
   	</fieldset>
+  		
   		Admission Date:<br>
-  		<input type="datetime-local" name="admissonTime">(mm/dd/yyyy, hh:mm AM/PM)
+  		Day<select name="day">
+  			<%
+  				for(int i=1;i<32;i++){
+  					if(i<=9)
+  						out.print("<option value='0"+i+"'>"+i+"</option>");
+  					else{
+  						out.print("<option value='"+i+"'>"+i+"</option>");
+  					}
+  				}
+  			%>
+  		</select>
+  		Month<select name="month">
+  			<%
+  				for(int i=1;i<13;i++){
+  					if(i<=9)
+  						out.print("<option value='0"+i+"'>"+i+"</option>");
+  					else{
+  						out.print("<option value='"+i+"'>"+i+"</option>");
+  					}
+  				}
+  			%>
+  		</select>
+  		
+  		<select name="year">
+  			<%
+  				for(int i=2015;i<2030;i++)
+  					out.print("<option value='"+i+"'>"+i+"</option>");
+  			%>
+  		</select>
   		<br>
+  		Admission Time(input in 24 hr format):<br>
+  		Hour<select name="hour">
+  			<%
+  				for(int i=0;i<24;i++){
+  					if(i<=9)
+  						out.print("<option value='0"+i+"'>"+i+"</option>");
+  					else{
+  						out.print("<option value='"+i+"'>"+i+"</option>");
+  					}
+  				}
+  			%>
+  		</select>
+  		Minute<select name="minute">
+  			<%
+  				for(int i=0;i<60;i++){
+  					if(i<=9)
+  						out.print("<option value='0"+i+"'>"+i+"</option>");
+  					else{
+  						out.print("<option value='"+i+"'>"+i+"</option>");
+  					}
+  				}
+  			%>
+  		</select>
+  		<br>
+  		<br>
+  		
   		Type of Ailment:<br>
   		<input type="text" name="illness">
   		<br>
   		Under Doctor:
-  		<select>
+  		<select name="doctorId">
   		<c:forEach var="row" items="${result.rows}">
 				<option value="<c:out value="${row.id}" />">
 					<c:out value="${row.name}"/>

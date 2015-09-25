@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Doctors</title>
 </head>
-<body>
+<body style="background-image:url(images/Metpolitan.jpg)">
 	<a href="doctorsView.jsp">View Details about doctors</a><br>
-	<a href="DoctorsInsert.jsp">Add a new Doctor</a><br>
+	<a href="doctorsInsert.jsp">Add a new Doctor</a><br>
 </body>
 </html>
