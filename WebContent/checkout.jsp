@@ -33,31 +33,7 @@
 		<sql:param value="<%=patientId %>" />
 	</sql:query>
 	
-	<% int total = 0; %>
-	<table border="2" >
-		<tr>
-			<th>Medicine Name</th>
-			<th>Medicine  Type</th>
-			<th>Quantity</th>
-			<th>Cost</th>
-		</tr>
-		<c:forEach var="row" items="${result.rows}">
-			<tr>
-				<td><c:out value="${row.name}" /></td>
-				<td><c:out value="${row.type}" /></td>
-				<td><c:out value="${row.quantity}" /></td>
-				<td><c:out value="${row.total}" /></td>
-				<c:set var="cost" value="${row.total}" />
-				<%
-					Long l = (Long)pageContext.getAttribute("cost");
-					total += l;
-				%>
-			</tr>
-		</c:forEach>
-		<tr>
-			<td></td><td></td><td>Total</td><td><%= total %></td>
-		</tr>
-	</table>
+	
 	
 	<!----------------------------- get the number of days patient was in -------------------------------------------------->
 	<sql:query dataSource="${snapshot}" var="patientRow">
@@ -135,10 +111,43 @@
 		SortedMap<Integer,Object>[] s3 = r3.getRows();
 		//out.print((Timestamp)s[0].get("admissionTime"));
 		Integer visit = (Integer)s3[0].get("visit");
+		String doctorName = (String)s3[0].get("name");
 		out.print(visit*dayDiff);
 	%>
-	<!-- View part ------------------------------------------------------------------------------------------------->
-	
+
+
+<!-- View part ------------------------------------------------------------------------------------------------->
+<!-- total,visit,daydiff,doctorName,adt,dis -->
+
+	<% int total = 0; %>
+	<table class="table table-striped table-bordered " >
+		<thead>
+		<tr>
+			<th>Medicine Name</th>
+			<th>Medicine  Type</th>
+			<th>Quantity</th>
+			<th>Cost</th>
+		</tr>
+		</thead>
+		<tbody>
+		<c:forEach var="row" items="${result.rows}">
+			<tr>
+				<td><c:out value="${row.name}" /></td>
+				<td><c:out value="${row.type}" /></td>
+				<td><c:out value="${row.quantity}" /></td>
+				<td><c:out value="${row.total}" /></td>
+				<c:set var="cost" value="${row.total}" />
+				<%
+					Long l = (Long)pageContext.getAttribute("cost");
+					total += l;
+				%>
+			</tr>
+		</c:forEach>
+		<tr>
+			<td></td><td></td><td>Total</td><td><%= total %></td>
+		</tr>
+		</tbody>
+	</table>
 	
 </body>
 </html>

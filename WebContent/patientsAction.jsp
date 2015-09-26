@@ -34,6 +34,8 @@
 		String sex = request.getParameter("sex");
 		String doctorId = request.getParameter("doctorId");
 		String illness = request.getParameter("illness");
+		String bedNo = request.getParameter("bedNo");
+		String age = request.getParameter("age");
 	%>
 	<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
 		url="<%=Strings.DB_SERVER_URL %>" user="<%=Strings.DB_USERNAME %>"
@@ -41,8 +43,8 @@
 	
 	<sql:update dataSource="${snapshot}" var="result">
 	INSERT INTO Patients 
-	(name,address,guardian,admissionTime,illness,sex,doctorId) 
-	VALUES (?,?,?,?,?,?,?);
+	(name,address,guardian,admissionTime,illness,sex,doctorId,bedNo,age) 
+	VALUES (?,?,?,?,?,?,?,?,?);
 	
 	<sql:param value="<%=name %>" />
 	<sql:param value="<%=address %>" />
@@ -51,6 +53,8 @@
 	<sql:param value="<%=illness %>" />
 	<sql:param value="<%=sex %>" />
 	<sql:param value="<%=doctorId %>" />
+	<sql:param value="<%=bedNo %>" />
+	<sql:param value="<%=age %>" />
 	</sql:update>
 	<c:out value="${result}"/>
 	

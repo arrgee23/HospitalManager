@@ -24,15 +24,20 @@
 	<sql:query dataSource="${snapshot}" var="result">
 	SELECT * from Patients;
 	</sql:query>
-	<table border="1" >
+	<table border="1" class="table" >
+		<thead>
 		<tr>
 			<th>ID</th>
 			<th>Name</th>
 			<th>Admission Time</th>
 			<th>Type of ailment</th>
 			<th>Doctor Id</th>
+			<th>Bed No</th>
+			<th>Age</th>
 			<th>Checkout</th>
 		</tr>
+		</thead>
+		<tbody>
 		<c:forEach var="row" items="${result.rows}">
 			<tr>
 				<td><c:out value="${row.id}" /></td>
@@ -40,10 +45,13 @@
 				<td><c:out value="${row.admissionTime}" /></td>
 				<td><c:out value="${row.illness}" /></td>
 				<td><c:out value="${row.doctorid}" /></td>
+				<td><c:out value="${row.bedNo}" /></td>
+				<td><c:out value="${row.age}" /></td>
 				<td><a href="patientMedicine.jsp?id=<c:out value="${row.id}" />">release</a></td>
 				
 			</tr>
 		</c:forEach>
+		</tbody>
 	</table>
 	
 </body>

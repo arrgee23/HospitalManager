@@ -96,8 +96,7 @@
   				}
   			%>
   		</select>
-  		<br>
-  		<br>
+  		<br><br>
   		
   		Type of Ailment:<br>
   		<input type="text" name="illness">
@@ -112,6 +111,23 @@
 		</c:forEach>
 		</select>
   		<br><br>
+  		Bed No:
+  		<select name="bedNo"> 
+  			<%
+  				for(int i=Strings.BED_NO_START;i<=Strings.BED_NO_END;i++){
+  						out.print("<option value='"+i+"'>"+i+"</option>");
+  				}
+  			%>
+  		</select>
+  		<br><br>
+  		Age:
+  		<select name="age"> 
+  			<%
+  				for(int i=1;i<=120;i++){
+  						out.print("<option value='"+i+"'>"+i+"</option>");
+  				}
+  			%>
+  		</select>
   		<input type="submit" value="Submit">
   		
 	</form>
