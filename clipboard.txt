@@ -1,0 +1,9 @@
+<!-- WHERE id=?;
+		<sql:param value="<%=did %>" />  -->
+		
+YEAR
+MONTH
+DAY_OF_MONTH
+HOUR_OF_DAY
+MINUTE
+SECOND

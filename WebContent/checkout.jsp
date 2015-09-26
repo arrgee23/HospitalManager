@@ -19,6 +19,7 @@
 		String patientId = request.getParameter("id");
 	%>
 	
+	<!-- get medicine used by patient and total bill -->
 	<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
 		url="<%=Strings.DB_SERVER_URL %>" user="<%=Strings.DB_USERNAME %>"
 		password="<%=Strings.DB_PASSWORD %>" />
@@ -69,22 +70,44 @@
 																pageContext.getAttribute("patientRow");
 		SortedMap<String,Object>[] s = r.getRows();
 		//out.print((Timestamp)s[0].get("admissionTime"));
-		Timestamp admissionTime = (Timestamp)s[0].get("admissionTime");
-		Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(admissionTime.getTime());
+		Timestamp ts = (Timestamp)s[0].get("admissionTime");
+		Calendar admissionTime = Calendar.getInstance();
+		admissionTime.setTimeInMillis(ts.getTime());
         
         Calendar dischargeTime = Calendar.getInstance();
-	
-      //Time Difference Calculations Begin
-       	long milliSec1 = calendar.getTimeInMillis();
-        long milliSec2 = dischargeTime.getTimeInMillis();
-        long timeDifInMilliSec = milliSec2 - milliSec1;
-        long timeDifDays = timeDifInMilliSec / (24 * 60 * 60 * 1000);
+		
+        String adt = TimeManager.prettyStringFromCalendar(admissionTime);
+        String dis = TimeManager.prettyStringFromCalendar(dischargeTime);
         
-        //out.println(timeDifDays);
+        out.println(adt+"<br>");
+        
+        out.println(dis);
+        
+        int yearDiff = dischargeTime.get(Calendar.YEAR)-admissionTime.get(Calendar.YEAR);
+        int sday,eday;
+        
+        eday=dischargeTime.get(Calendar.DAY_OF_YEAR);
+        if(dischargeTime.get(Calendar.HOUR_OF_DAY) > 20 || 
+        		(dischargeTime.get(Calendar.HOUR_OF_DAY)==20 && dischargeTime.get(Calendar.MINUTE)>0) ){
+        	eday += 1;
+        }
+        sday = admissionTime.get(Calendar.DAY_OF_YEAR);
+        if(admissionTime.get(Calendar.HOUR_OF_DAY) > 20 || 
+        		(admissionTime.get(Calendar.HOUR_OF_DAY)==20 && admissionTime.get(Calendar.MINUTE)>0) ){
+        	eday += 1;
+        }
+        int dayDiff = eday-sday+1 + 365*yearDiff;
+        
+        out.println(dayDiff);
 	%>
-	
+	<!-- update table for releasetime -->
+		<sql:update dataSource="${snapshot}" var="foo2"> 
+			update Patients set releaseTime=CURRENT_TIMESTAMP
+			where id=?;
+			<sql:param value="<%=patientId %>" />
+		</sql:update>
 	<!-- -------------------------------------------------------------------------------- -->
+	<!--  get the doctor under which patient was admitted -->
 	
 	<sql:query dataSource="${snapshot}" var="doctor">
 		SELECT doctorId FROM Patients
@@ -95,12 +118,12 @@
 	<% 
 		org.apache.taglibs.standard.tag.common.sql.ResultImpl r2 = (org.apache.taglibs.standard.tag.common.sql.ResultImpl)
 																pageContext.getAttribute("doctor");
-		SortedMap<Long,Object>[] s2 = r2.getRows();
+		SortedMap<Integer,Object>[] s2 = r2.getRows();
 		//out.print((Timestamp)s[0].get("admissionTime"));
-		Long did = (Long)s2[0].get("doctorId");
-		
+		Integer did = (Integer)s2[0].get("doctorId");
+		//out.print(patientId);
 	%>
-	<!-- -------------------------------------------------------------------------------- -->
+	<!-- get his fee ----------------------------------------------------------------------------------- -->
 	<sql:query dataSource="${snapshot}" var="fees">
 		SELECT * FROM Doctors
 		WHERE id=?;
@@ -109,11 +132,13 @@
 	
 	<%org.apache.taglibs.standard.tag.common.sql.ResultImpl r3 = (org.apache.taglibs.standard.tag.common.sql.ResultImpl)
 																pageContext.getAttribute("fees");
-		SortedMap<Long,Object>[] s3 = r3.getRows();
+		SortedMap<Integer,Object>[] s3 = r3.getRows();
 		//out.print((Timestamp)s[0].get("admissionTime"));
-		Long visit = (Long)s3[0].get("visit");
-		out.print(visit*timeDifDays);
+		Integer visit = (Integer)s3[0].get("visit");
+		out.print(visit*dayDiff);
 	%>
+	<!-- View part ------------------------------------------------------------------------------------------------->
+	
 	
 </body>
 </html>
