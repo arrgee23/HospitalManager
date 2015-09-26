@@ -56,6 +56,6 @@
 	 -->
 	 <a href="addMedicine.jsp?id=<%=patientId %>">Insert/update medicine</a>
 	 <br>
-	 <a href="checkout.jsp?id=<%=patientId %>">Checkout</a>
+	 <a href="beforeCheckout.jsp?id=<%=patientId %>">Checkout</a>
 </body>
 </html>

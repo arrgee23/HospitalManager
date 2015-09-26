@@ -6,4 +6,5 @@ public class Strings {
 	public static final String DB_USERNAME = "root";
 	public static final int BED_NO_START = 1;
 	public static final int BED_NO_END = 20;
+	public static final int BED_CHARGE = 500;
 }
