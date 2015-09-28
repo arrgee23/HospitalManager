@@ -17,23 +17,16 @@
 	</div>
 	<div class="row">
 	
-			<a class="btn btn-block btn-success" href="patients.jsp">Manage Patients</a>	
+			<a class="btn btn-block btn-success" href="patientsView.jsp">Manage Patients</a>	
 	
 	</div>
 	<br><br>
 	<div class="row">
-	
-		
-			<a class="btn btn-block btn-success" href="doctors.jsp">Manage Doctors</a>
-		
-	
+			<a class="btn btn-block btn-success" href="doctorsView.jsp">Manage Doctors</a>
 	</div>
 	<br><br>
 	<div class="row">
-	
-		
-			<a class="btn btn-block btn-success" href="medicine.jsp">Manage Medicine</a>
-		
+			<a class="btn btn-block btn-success" href="medicineView.jsp">Manage Medicine</a>
 	</div>
 	</div>
 </div>

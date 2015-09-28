@@ -226,7 +226,7 @@
         </tr>
         <tr>
             <td>Oxygen/Ambulance/Miscellaneous</td>
-            <td><%=doctorName %>, <%=dayDiff %> days</td>
+            <td></td>
            	<td><%=misc %></td>
         </tr>
         

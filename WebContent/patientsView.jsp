@@ -24,6 +24,11 @@
 	<sql:query dataSource="${snapshot}" var="result">
 	select * from Patients WHERE releaseTime IS NULL; 
 	</sql:query>
+	<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+	<div class="jumbotron text-center">
+		<h1>Patients</h1>
+	</div>
 	<table border="1" class="table" >
 		<thead>
 		<tr>
@@ -53,6 +58,8 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	
+	<a class="btn btn-success btn-block" href="patientsInsert.jsp">Add a new Patient</a><br>
+	</div>
+	</div>
 </body>
 </html>

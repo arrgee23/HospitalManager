@@ -38,7 +38,8 @@
 			<tr>
 				<sql:query dataSource="${snapshot}" var="result2">
 					SELECT * FROM Medicine
-					WHERE Id=?;
+					WHERE Id=?
+					AND quantity !=0;
 					<sql:param value="${row.medicineId}" />
 				</sql:query>
 				<c:forEach var="row2" items="${result2.rows}">

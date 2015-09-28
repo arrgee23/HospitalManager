@@ -9,22 +9,28 @@
 <title>Add Medicine</title>
 </head>
 <body>
-	<form action="medicineAction.jsp">
+	<div class="jumbotron text-center">
+		<h1>Add Medicine</h1>
+	</div>
+	<div class="col-xs-4 col-xs-offset-4">
+	<form class="form" action="medicineAction.jsp">
   		Name:<br>
-    	<input type="text" name="name" title="Medicine name">
+    	<input type="text" class="form-control" name="name" title="Medicine name">
     	<br>
     	Type:<br>
-    	<input type="text" name="type" title="Medicine Type">
+    	<input type="text" class="form-control" name="type" title="Medicine Type">
     	<br>
     	Items in Stock:
     	<br>
-    	<input type="number" name="quantity">
+    	<input type="number" class="form-control" value="0" name="quantity">
     	<br>
     	Price:
     	<br>
-    	<input type="number" name="price">
+    	<input type="number" class="form-control" value="0" name="price">
     	<br><br>
-  		<input type="submit" value="Submit">
+  		<input type="submit" class="btn btn-success" value="Submit">
 	</form>
+	</div>
+
 </body>
 </html>

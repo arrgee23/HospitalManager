@@ -22,21 +22,21 @@
   		<input type="hidden" name="id" value='<%=s %>'>
   		<br><br>     
     	O.T. Charges:
-    	<input type="number" name="ot">
+    	<input type="number" value="0" name="ot">
     	<br><br>
     	
     	O.T.Team Charges:
-    	<input type="number" name="otTeam" size="50">
+    	<input type="number" value="0" name="otTeam" size="50">
     	<br><br>
     	
     	Pathological Charges:
-    	<input type="number" name="pathology" >
+    	<input type="number" value="0" name="pathology" >
     	<br><br>
     	Miscellaneous:
-    	<input type="number" name="misc" >  
+    	<input type="number" name="misc" value="0" >  
     	<br><br>
     	Amount paid:
-    	<input type="number" name="paid" >
+    	<input type="number" name="paid" value="0">
     		<br><br>
   		
   		<input type="submit" value="Submit">

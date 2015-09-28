@@ -22,8 +22,13 @@
 	<sql:query dataSource="${snapshot}" var="result">
 	SELECT * from Medicine;
 	</sql:query>
-
-	<table border="1" >
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+	<div class="jumbotron text-center">
+		<h1>Medicine Inventory</h1>
+	</div>
+	<div class=row">
+	<table class="table" >
 		<tr>
 			<th>Medicine ID</th>
 			<th>Medicine Name</th>
@@ -41,6 +46,9 @@
 			</tr>
 		</c:forEach>
 	</table>
-
+	</div>
+	<a class="btn btn-success btn-block" href="medicineInsert.jsp">Add a new Drug</a><br>
+	</div>
+	</div>
 </body>
 </html>

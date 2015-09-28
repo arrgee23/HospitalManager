@@ -15,23 +15,26 @@
 <title>Insert Doctor</title>
 </head>
 <body>
-	<form action="doctorsAction.jsp">
-  	<fieldset>
-    	<legend>Doctor information:</legend>
-    	Full Name:<br>
-    	<input type="text" name="name">
-    	<br>
-    	Speciality:<br>
-    	<input type="text" name="speciality" size="50" >
-    	<br>
-    	Visit(Rs):<br>
-    	<input type="number" name="visit">
-    	<br>
-    	<input type="submit" value="Submit">
-  	</fieldset>
-  		
+	<div class="jumbotron text-center">
+		<h1>Insert Doctors</h1>
+	</div>
+	<div class="col-xs-4 col-xs-offset-4">
+	<form class="form" action="doctorsAction.jsp">
+  		<fieldset>
+    		<legend>Doctor information:</legend>
+    		Full Name:<br>
+    		<input class="form-control" type="text" name="name">
+    		<br>
+    		Speciality:<br>
+    		<input type="text" class="form-control" name="speciality" size="50" >
+    		<br>
+    		Visit(Rs):<br>
+    		<input class="form-control" type="number" value="0" name="visit">
+    		<br>
+    		<input type="submit" class="btn btn-success btn-block" value="Submit">
+  		</fieldset>
 	</form>
-	
+	</div>
 
 </body>
 </html>

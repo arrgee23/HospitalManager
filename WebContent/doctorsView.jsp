@@ -23,23 +23,31 @@
 	<sql:query dataSource="${snapshot}" var="result">
 	SELECT * from Doctors;
 	</sql:query>
-
-	<table border="1" >
-		<tr>
-			<th>Doctor ID</th>
-			<th>Doctor Name</th>
-			<th>Speciality</th>
-			<th>Visit</th>
-		</tr>
-		<c:forEach var="row" items="${result.rows}">
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+		<div class="jumbotron text-center">
+			<h1>Metropolitan Hospital</h1>
+		</div>
+		<div class="row">
+			<table class="table tbl-border" >
 			<tr>
-				<td><c:out value="${row.id}" /></td>
-				<td><c:out value="${row.name}" /></td>
-				<td><c:out value="${row.speciality}" /></td>
-				<td><c:out value="${row.visit}" /></td>
+				<th>Doctor ID</th>
+				<th>Doctor Name</th>
+				<th>Speciality</th>
+				<th>Visit(Rs)</th>
 			</tr>
-		</c:forEach>
-	</table>
-	
+				<c:forEach var="row" items="${result.rows}">
+				<tr>
+					<td><c:out value="${row.id}" /></td>
+					<td><c:out value="${row.name}" /></td>
+					<td><c:out value="${row.speciality}" /></td>
+					<td><c:out value="${row.visit}" /></td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
+		<a class="btn btn-success btn-block" href="doctorsInsert.jsp">Add a new Doctor</a><br>
+	</div>
+</div>
 </body>
 </html>
