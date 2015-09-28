@@ -10,16 +10,32 @@
 </head>
 
 <body>
-	<div class="jumbotron">
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+	<div class="jumbotron text-center">
 		<h1>Metropolitan Hospital</h1>
 	</div>
 	<div class="row">
-	<div class="col-sm-6">
+	
+			<a class="btn btn-block btn-success" href="patients.jsp">Manage Patients</a>	
+	
+	</div>
+	<br><br>
+	<div class="row">
+	
 		
-		<a href="patients.jsp">Manage Patients</a>
-		<a href="doctors.jsp">Manage Doctors</a>
-		<a href="medicine.jsp">Manage Medicine</a>	
+			<a class="btn btn-block btn-success" href="doctors.jsp">Manage Doctors</a>
+		
+	
+	</div>
+	<br><br>
+	<div class="row">
+	
+		
+			<a class="btn btn-block btn-success" href="medicine.jsp">Manage Medicine</a>
+		
 	</div>
 	</div>
+</div>
 </body>
 </html>

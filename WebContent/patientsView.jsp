@@ -22,7 +22,7 @@
 		password="<%=Strings.DB_PASSWORD %>" />
 	
 	<sql:query dataSource="${snapshot}" var="result">
-	SELECT * from Patients;
+	select * from Patients WHERE releaseTime IS NULL; 
 	</sql:query>
 	<table border="1" class="table" >
 		<thead>

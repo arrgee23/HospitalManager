@@ -9,8 +9,14 @@
 <title>Patients</title>
 </head>
 <body>
-	<a href="patientsInsert.jsp">Add a new Patient</a><br>
-	<a href="patientsDischarge.jsp">Discharge Patient</a><br>
-	<a href="patientsView.jsp">View Patients</a><br>
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+	<div class="jumbotron text-center">
+		<h1>Patients</h1>
+	</div>
+	<a class="btn btn-success btn-block" href="patientsInsert.jsp">Add a new Patient</a><br>
+	<a class="btn btn-success btn-block" href="patientsView.jsp">View Patients</a><br>
+	</div>
+</div>
 </body>
 </html>
