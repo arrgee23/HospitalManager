@@ -39,6 +39,8 @@
 			<th>Doctor Id</th>
 			<th>Bed No</th>
 			<th>Age</th>
+			<th>Update</th>
+			<th>View</th>
 			<th>Checkout</th>
 		</tr>
 		</thead>
@@ -52,8 +54,9 @@
 				<td><c:out value="${row.doctorid}" /></td>
 				<td><c:out value="${row.bedNo}" /></td>
 				<td><c:out value="${row.age}" /></td>
-				<td><a href="patientMedicine.jsp?id=<c:out value="${row.id}" />">release</a></td>
-				
+				<td><a href="patientMedicine.jsp?id=<c:out value="${row.id}" />">Add Medicine</a></td>
+				<td><a href="viewPatientStatus.jsp?id=<c:out value="${row.id}" />">View Record</a></td>
+				<td><a href="beforeCheckout.jsp?id=<c:out value="${row.id}" />">Release</a></td>
 			</tr>
 		</c:forEach>
 		</tbody>

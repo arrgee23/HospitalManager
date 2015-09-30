@@ -12,19 +12,13 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Checkout</title>
+<title>patient Status</title>
 </head>
 <body>
-	<%
-		String patientId = request.getParameter("id");
-		String ot = request.getParameter("ot");
-		String otTeam = request.getParameter("otTeam");
-		String pathology = request.getParameter("pathology");
-		String misc = request.getParameter("misc");
-		String paid = request.getParameter("paid");
-	%>
-	
-	<!-- get medicine used by patient and total bill -->
+<%
+String patientId = request.getParameter("id");
+%>
+<!-- get medicine used by patient and total bill -->
 	<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
 		url="<%=Strings.DB_SERVER_URL %>" user="<%=Strings.DB_USERNAME %>"
 		password="<%=Strings.DB_PASSWORD %>" />
@@ -81,12 +75,6 @@
         
         //out.println(dayDiff);
 	%>
-	<!-- update table for releasetime -->
-		<sql:update dataSource="${snapshot}" var="foo2"> 
-			update Patients set releaseTime=CURRENT_TIMESTAMP
-			where id=?;
-			<sql:param value="<%=patientId %>" />
-		</sql:update>
 	<!-- -------------------------------------------------------------------------------- -->
 	<!--  get the doctor under which patient was admitted -->
 	
@@ -137,10 +125,10 @@
 	</c:forEach>
 	
 	<div class="page-header">
-		<h1 class="text-center">Bill/Invoice</h1>
+		<h1 class="text-center">Till Now</h1>
 	</div>
 	
-	<p>
+	
 		<div class="row">
 			<div class="col-xs-4 text-left">
 			<b>Patient's Name:</b> <%= (String)patient[0].get("name")%>
@@ -163,9 +151,7 @@
 			<div class="col-xs-6 text-left">
 			<b>Date of Admission:</b> <%= adt%>
 			</div>
-			<div class="col-xs-6 text-left">
-			<b>Date of Discharge:</b> <%= dis%>
-			</div>
+			
 		</div>
 		<br>
 		<div class="row">
@@ -176,13 +162,9 @@
 			<b>Under Doctor:</b> <%= doctorName%>
 			</div>
 		</div>
-	</p>
 	<!-- ------------------------------------------------------------- -->
 	<%
-		int grandTotal = dayDiff*Strings.BED_CHARGE+Integer.parseInt(ot)+
-				Integer.parseInt(otTeam)+Integer.parseInt(misc)+Integer.parseInt(pathology)+
-				dayDiff*visit+total;
-		int patientPaid = Integer.parseInt(paid);
+		int grandTotal = dayDiff*visit+total;
 	%>
 	<br><br>
 	<table class="table table-striped table-bordered">
@@ -199,67 +181,31 @@
             <td><%=dayDiff %> x <%=Strings.BED_CHARGE %></td>
             <td><%=dayDiff*Strings.BED_CHARGE %> </td>
         </tr>
-        <tr>
-            <td>O.T. Charges</td>
-            <td></td>
-            <td><%=ot %></td>
-        </tr>
-        <tr>
-            <td>O.T. Team Charges</td>
-            <td></td>
-           	<td><%=otTeam %></td>
-        </tr>
+        
+        
         <tr>
             <td>Doctor's Fee</td>
             <td><%=doctorName %>, <%=dayDiff %> days</td>
            	<td><%=dayDiff*visit %></td>
         </tr>
-        <tr>
-            <td>Pathological Charges</td>
-            <td>N/A</td>
-           	<td><%=pathology %></td>
-        </tr>
+        
         <tr>
             <td>Medicine/Kit</td>
             <td>N/A</td>
            	<td><%=total %></td>
         </tr>
-        <tr>
-            <td>Oxygen/Ambulance/Miscellaneous</td>
-            <td></td>
-           	<td><%=misc %></td>
-        </tr>
+       
         
         <tr>
             <td></td>
             <td>Total</td>
            	<td><%=grandTotal %></td>
         </tr>
-        <tr>
-            <td></td>
-            <td>Amount Deposited</td>
-           	<td><%= paid %></td>
-        </tr>
-        
-        <tr>
-            <td></td>
-            <td>Amount Due</td>
-           	<td><%=grandTotal-patientPaid %></td>
-        </tr>
     
     </tbody>
 </table>
-<br><br>
-<div class="row">
-	<div class="col-xs-6">
-	Date:  ...........................................
-	</div>
-	
-	<div class="col-xs-6">
-	Authorised Signatory:  ...............................................
-	</div>
-	
-</div>
+<br>
+	<a class="btn btn-block btn-success" href="patientsView.jsp">Done? Go Back</a>
 <br>
 </body>
 </html>

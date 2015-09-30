@@ -26,12 +26,22 @@
 		password="<%=Strings.DB_PASSWORD %>" />
 	
 	<sql:update dataSource="${snapshot}" var="result">
+	UPDATE Medicine SET quantity=quantity-? WHERE id=?; 
+	
+	<sql:param value="<%=quantity %>" />
+	<sql:param value="<%=medicineId %>" />
+	</sql:update>
+	
+	
+	<sql:update dataSource="${snapshot}" var="result">
 	UPDATE PatientMedicine SET quantity=quantity+?  WHERE patientId=? and medicineId=?; 
 	
 	<sql:param value="<%=quantity %>" />
 	<sql:param value="<%=patientId %>" />
 	<sql:param value="<%=medicineId %>" />
 	</sql:update>
+	
+	
 	
 	<c:if test="${result == 0}">
 		<sql:update dataSource="${snapshot}" var="result2"> 

@@ -27,8 +27,16 @@
 		WHERE patientId=?;
 		<sql:param value="<%=patientId %>" />
 	</sql:query>
-	
-	<table border="1" >
+	<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+	<div class="jumbotron text-center">
+		<h1>Patients</h1>
+	</div>
+	<br><br>
+	<a class="btn btn-block btn-info" href="addMedicine.jsp?id=<%=patientId %>">Click to Insert/update medicine</a>
+	<br>
+	<h3 class="text-center">Medicine Kit Given To Patient</h3>
+	<table border="1" class="table">
 		<tr>
 			<th>Medicine Name</th>
 			<th>Medicine Type</th>
@@ -51,12 +59,15 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<br>
+	<a class="btn btn-block btn-success" href="patientsView.jsp">Done? Go Back</a>
+	</div>
+	</div>
 	<!-- Done already given medicine
 		UPDATE PatientMedicine SET quantity=quantity+12  WHERE patientId=1 and medicineId=2; 
 		if doesnt match doesnt do anything
 	 -->
-	 <a href="addMedicine.jsp?id=<%=patientId %>">Insert/update medicine</a>
-	 <br>
-	 <a href="beforeCheckout.jsp?id=<%=patientId %>">Checkout</a>
+	 
+	 
 </body>
 </html>

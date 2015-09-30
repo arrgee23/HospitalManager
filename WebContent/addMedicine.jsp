@@ -32,7 +32,7 @@
 		SELECT * from Medicine;
 	</sql:query>
 	<h3>The number you enter here will be added to the previous amount:</h3>	
-	<form action="addMedicineAction.jsp">
+	<form action="addMedicineAction.jsp" class="form">
 		<input type="hidden" name="patientId" value="<%= patientId %>" />
 
 		Select Medicine:
