@@ -62,14 +62,14 @@ String patientId = request.getParameter("id");
         int sday,eday;
         
         eday=dischargeTime.get(Calendar.DAY_OF_YEAR);
-        if(dischargeTime.get(Calendar.HOUR_OF_DAY) > 20 || 
-        		(dischargeTime.get(Calendar.HOUR_OF_DAY)==20 && dischargeTime.get(Calendar.MINUTE)>0) ){
+        if(dischargeTime.get(Calendar.HOUR_OF_DAY) > 8 || 
+        		(dischargeTime.get(Calendar.HOUR_OF_DAY)==8 && dischargeTime.get(Calendar.MINUTE)>0) ){
         	eday += 1;
         }
         sday = admissionTime.get(Calendar.DAY_OF_YEAR);
-        if(admissionTime.get(Calendar.HOUR_OF_DAY) > 20 || 
-        		(admissionTime.get(Calendar.HOUR_OF_DAY)==20 && admissionTime.get(Calendar.MINUTE)>0) ){
-        	eday += 1;
+        if(admissionTime.get(Calendar.HOUR_OF_DAY) > 8 || 
+        		(admissionTime.get(Calendar.HOUR_OF_DAY)==8 && admissionTime.get(Calendar.MINUTE)>0) ){
+        	sday += 1;
         }
         int dayDiff = eday-sday+1 + 365*yearDiff;
         
@@ -164,7 +164,7 @@ String patientId = request.getParameter("id");
 		</div>
 	<!-- ------------------------------------------------------------- -->
 	<%
-		int grandTotal = dayDiff*visit+total;
+		int grandTotal = dayDiff*visit+total+dayDiff*Strings.BED_CHARGE;
 	%>
 	<br><br>
 	<table class="table table-striped table-bordered">
